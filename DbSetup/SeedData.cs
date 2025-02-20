@@ -28,6 +28,22 @@ namespace IndyBooks
                 },
                 new Book
                 {
+                    Title = "Harry Potter",
+                    Author = "J.K. Rowling",
+                    Edition = "1",
+                    Price = 160.95M,
+                    Year = "1995"
+                },
+                new Book
+                {
+                    Title = "Twighlight",
+                    Author = "Stephenie Meyer",
+                    Edition = "5",
+                    Price = 105.95M,
+                    Year = "2004"
+                },
+                new Book
+                {
                     Title = "Northanger Abbey",
                     Author = "Jane Austin",
                     Edition = "3",

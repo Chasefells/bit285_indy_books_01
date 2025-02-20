@@ -11,7 +11,15 @@
         <input asp-for="Title" />
         <br />
         <!-- TODO: Add fields needed for searching -->
-
+        <label asp-for="AuthorLastName"></label>
+        <input asp-for="AuthorLastName" />
+        <br />
+        <label asp-for="LowPrice"></label>
+        <input asp-for="LowPrice" />
+        <br />
+        <label asp-for="HighPrice"></label>
+        <input asp-for="HighPrice" />
+        <br />
         <label asp-for="HalfPriceSale"></label>
         <input type="checkbox" asp-for="HalfPriceSale" value="true" checked />
     </fieldset>

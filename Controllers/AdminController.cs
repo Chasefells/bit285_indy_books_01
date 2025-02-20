@@ -29,21 +29,40 @@ namespace IndyBooks.Controllers
             {
                 //Filter the collection by Title which "contains" the given string
                 foundBooks = foundBooks
-                             .Where(b => b.Title.Contains(searchVM.Title));
-                // TODO: Order the results by Title
+                             .Where(b => b.Title.Contains(searchVM.Title))
+                             .OrderBy(b => b.Title);
+                // Done: Order the results by Title
             }
 
-            //TODO: Add similar logic to filter foundbooks collection by last part of the Author's Name, if given
+            //Done: Add similar logic to filter foundbooks collection by last part of the Author's Name, if given
             // (HINT: consider the EndsWith() method, also adjust the Search View and ViewModel to add items)
-
-            //TODO: Filter the collection by price between a low and high value, if given
+                if (!string.IsNullOrEmpty(searchVM.AuthorLastName))
+            {
+                foundBooks = foundBooks
+                 .Where(b => b.Author.EndsWith(searchVM.AuthorLastName));
+            }
+            //Done: Filter the collection by price between a low and high value, if given
             //       order results by descending price 
             // (Note: you will need to adjust the Search ViewModel and View to add search fields)
-
-            //TODO:  Create a projection as a new Book collection with the "Half-Off Sale" Price for books over $90
+             if (searchVM.LowPrice.HasValue && searchVM.HighPrice.HasValue)
+           {
+               foundBooks = foundBooks
+                .Where(b => b.Price >= searchVM.LowPrice && b.Price <= searchVM.HighPrice)
+               .OrderByDescending(b => b.Price);
+            }
+            //Todo:  Create a projection as a new Book collection with the "Half-Off Sale" Price for books over $90
             //       You only need to include the Title, Author, and sale price in the projection
             if (searchVM.HalfPriceSale) { 
-                
+                {
+              var saleBooks = foundBooks
+                 .Where(b => b.Price > 90)
+                 .Select(b => new Book
+         {
+                 Title = b.Title,
+                 Author = b.Author,
+                 Price = b.Price / 2
+        });
+}
 
             }
 
